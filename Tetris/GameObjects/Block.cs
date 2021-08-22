@@ -10,14 +10,14 @@ namespace Tetris.GameObjects
 
         public ColoredSymbol Symbol { get; private set; }
 
-        public Block()
+        public Block(Vector2D displaySize)
         {
             Symbol = new ColoredSymbol('X', ConsoleColor.Yellow);
 
             Elements = new List<Vector2D>();
-            Elements.Add(new Vector2D(50, 0));
-            Elements.Add(new Vector2D(50, 1));
-            Elements.Add(new Vector2D(51, 1));
+            Elements.Add(new Vector2D(displaySize.X / 2, 0));
+            Elements.Add(new Vector2D(displaySize.X / 2, 1));
+            Elements.Add(new Vector2D(displaySize.X / 2 + 1, 1));
         }
 
         public void Turn()
@@ -36,7 +36,6 @@ namespace Tetris.GameObjects
             for (int i = 0; i < Elements.Count; i++)
             {
                 var movement = Vector2D.Down;
-                movement.Y *= speed;
                 Elements[i].Add(movement);
             }
         }

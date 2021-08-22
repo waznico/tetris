@@ -1,4 +1,5 @@
-﻿using Tetris.Base;
+﻿using System;
+using Tetris.Base;
 using Tetris.Display;
 using Tetris.GameObjects;
 
@@ -8,11 +9,22 @@ namespace Tetris
     {
         static void Main(string[] args)
         {
-            var block = new Block();
-            var renderer = new ConsoleRenderer(new Vector2D(100, 100));
+            Console.Clear();
+            Console.CursorVisible = false;
+            var displaySize = new Vector2D(25, 50);
+            var renderer = new ConsoleRenderer(displaySize);
 
-            renderer.AddObjectToRenderer(block);
-            renderer.ExecuteRendering();
+            var block = new Block(displaySize);
+
+            do
+            {
+                renderer.AddObjectToRenderer(block);
+                renderer.ExecuteRendering();
+
+                block.Move(1);
+
+                System.Threading.Thread.Sleep(175);
+            } while (true);
         }
     }
 }
