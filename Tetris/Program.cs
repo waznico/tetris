@@ -21,6 +21,23 @@ namespace Tetris
                 renderer.AddObjectToRenderer(block);
                 renderer.ExecuteRendering();
 
+                if (Console.KeyAvailable)
+                {
+                    var keyInfo = Console.ReadKey();
+
+                    switch (keyInfo.Key)
+                    {
+                        case ConsoleKey.RightArrow:
+                            block.Steer(Direction.Right);
+                            break;
+                        case ConsoleKey.LeftArrow:
+                            block.Steer(Direction.Left);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
                 block.Move(1);
 
                 System.Threading.Thread.Sleep(175);

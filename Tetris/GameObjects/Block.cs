@@ -36,7 +36,30 @@ namespace Tetris.GameObjects
             for (int i = 0; i < Elements.Count; i++)
             {
                 var movement = Vector2D.Down;
+                movement.Y *= speed;
                 Elements[i].Add(movement);
+            }
+        }
+
+        public void Steer(Direction direction)
+        {
+            var directionVector = Vector2D.Zero;
+            switch (direction)
+            {
+                case Direction.Left:
+                    directionVector = Vector2D.Left;
+                    break;
+                case Direction.Right:
+                    directionVector = Vector2D.Right;
+                    break;
+            }
+
+            if (!directionVector.Equals(Vector2D.Zero))
+            {
+                for (int i = 0; i < Elements.Count; i++)
+                {
+                    Elements[i].Add(directionVector);
+                }
             }
         }
     }
