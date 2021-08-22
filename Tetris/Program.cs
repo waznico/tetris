@@ -14,10 +14,12 @@ namespace Tetris
             var displaySize = new Vector2D(25, 50);
             var renderer = new ConsoleRenderer(displaySize);
 
+            var border = new Border(displaySize);
             var block = new Block(displaySize);
 
             do
             {
+                renderer.AddObjectToRenderer(border);
                 renderer.AddObjectToRenderer(block);
                 renderer.ExecuteRendering();
 
