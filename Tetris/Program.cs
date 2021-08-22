@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Tetris.Base;
 using Tetris.Display;
@@ -20,10 +21,15 @@ namespace Tetris
 
             var border = new Border(displaySize);
             var block = new Block(displaySize);
+            var stack = new List<Block>();
 
             do
             {
                 renderer.AddObjectToRenderer(border);
+                foreach (var item in stack)
+                {
+                    renderer.AddObjectToRenderer(item);
+                }
                 renderer.AddObjectToRenderer(block);
                 renderer.ExecuteRendering();
 
@@ -55,9 +61,15 @@ namespace Tetris
                 }
 
                 var hitTheGround = block.Elements.Where(bl => bl.Y == displaySize.Y - 2).Any();
+                
                 if (!hitTheGround)
                 {
                     block.Move(1);
+                }
+                else
+                {
+                    stack.Add(block);
+                    block = new Block(displaySize);
                 }
 
                 System.Threading.Thread.Sleep(175);
