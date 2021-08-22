@@ -20,6 +20,25 @@ namespace Tetris.GameObjects
             Elements.Add(new Vector2D(51, 1));
         }
 
+        public void Turn()
+        {
+            for (int i = 0; i < Elements.Count; i++)
+            {
+                int x = Elements[i].X * -1;
+                int y = Elements[i].Y;
+                Elements[i].X = y;
+                Elements[i].Y = x;
+            }
+        }
 
+        public void Move(int speed)
+        {
+            for (int i = 0; i < Elements.Count; i++)
+            {
+                var movement = Vector2D.Down;
+                movement.Y *= speed;
+                Elements[i].Add(movement);
+            }
+        }
     }
 }
