@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Tetris.Base;
 
-namespace Tetris.GameObjects
+namespace Tetris.GameObjects.Blocks
 {
     public class Block : IGameObject
     {

@@ -9,10 +9,12 @@
     <None Remove="Base\" />
     <None Remove="Display\" />
     <None Remove="GameObjects\" />
+    <None Remove="GameObjects\Blocks\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Base\" />
     <Folder Include="Display\" />
     <Folder Include="GameObjects\" />
+    <Folder Include="GameObjects\Blocks\" />
   </ItemGroup>
 </Project>

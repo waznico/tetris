@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using Tetris.Base;
 using Tetris.Display;
 using Tetris.GameObjects;
+using Tetris.GameObjects.Blocks;
 
 namespace Tetris
 {
@@ -9,6 +11,8 @@ namespace Tetris
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Press any key to start...");
+            Console.ReadKey();
             Console.Clear();
             Console.CursorVisible = false;
             var displaySize = new Vector2D(25, 50);
@@ -27,20 +31,34 @@ namespace Tetris
                 {
                     var keyInfo = Console.ReadKey();
 
-                    switch (keyInfo.Key)
+                    var modifier = 1;
+                    if (keyInfo.Key.Equals(ConsoleKey.LeftArrow))
                     {
-                        case ConsoleKey.RightArrow:
-                            block.Steer(Direction.Right);
-                            break;
-                        case ConsoleKey.LeftArrow:
-                            block.Steer(Direction.Left);
-                            break;
-                        default:
-                            break;
+                        modifier *= -1;
+                    }
+                    var collidedWithBorder = block.Elements.Where(el => el.X + modifier < 2 || el.X + modifier > displaySize.X - 2).Any();
+
+                    if (!collidedWithBorder)
+                    {
+                        switch (keyInfo.Key)
+                        {
+                            case ConsoleKey.RightArrow:
+                                block.Steer(Direction.Right);
+                                break;
+                            case ConsoleKey.LeftArrow:
+                                block.Steer(Direction.Left);
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
 
-                block.Move(1);
+                var hitTheGround = block.Elements.Where(bl => bl.Y == displaySize.Y - 2).Any();
+                if (!hitTheGround)
+                {
+                    block.Move(1);
+                }
 
                 System.Threading.Thread.Sleep(175);
             } while (true);

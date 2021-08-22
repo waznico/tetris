@@ -16,20 +16,22 @@ namespace Tetris.Base
         /// Adds vector to current vector object.
         /// </summary>
         /// <param name="other">Vector values to add to current</param>
-        public void Add(Vector2D other)
+        public Vector2D Add(Vector2D other)
         {
             X += other.X;
             Y += other.Y;
+            return this;
         }
 
         /// <summary>
         /// Substracts vector from current vector object.
         /// </summary>
         /// <param name="other">Vector values to substract</param>
-        public void Substract(Vector2D other)
+        public Vector2D Substract(Vector2D other)
         {
             X -= other.X;
             Y -= other.Y;
+            return this;
         }
 
         public static Vector2D Zero
