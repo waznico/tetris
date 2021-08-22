@@ -7,8 +7,12 @@
 
   <ItemGroup>
     <None Remove="Base\" />
+    <None Remove="Display\" />
+    <None Remove="GameObjects\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Base\" />
+    <Folder Include="Display\" />
+    <Folder Include="GameObjects\" />
   </ItemGroup>
 </Project>
