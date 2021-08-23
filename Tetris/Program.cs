@@ -61,8 +61,19 @@ namespace Tetris
                 }
 
                 var hitTheGround = block.Elements.Where(bl => bl.Y == displaySize.Y - 2).Any();
+                var hitAnotherBlock = false;
+
+                foreach (var item in block.Elements)
+                {
+                    hitAnotherBlock = stack.Find(s => s.Elements.Where(el => el.Y == item.Y + 1 && el.X == item.X).FirstOrDefault() != null) != null;
+
+                    if (hitAnotherBlock)
+                    {
+                        break;
+                    }
+                }
                 
-                if (!hitTheGround)
+                if (!hitTheGround && !hitAnotherBlock)
                 {
                     block.Move(1);
                 }
